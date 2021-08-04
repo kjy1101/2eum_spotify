@@ -1,0 +1,7 @@
+<h1>GET TOP 10 TRACKS -CHARLIE PUTH </h1>
+
+{% for track in results %}
+    {{ track.name }} <br>
+    <audio src="{{ track.preview_url }}" width="400" controls autoplay>mp3-preview</audio> <br>
+    <img src="{{ track.album.images.0.url }}" alt="album-image" width="200px"> <br><br>
+{% endfor %}

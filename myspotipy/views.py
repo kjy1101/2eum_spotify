@@ -1,16 +1,19 @@
 from django.shortcuts import render
 from spotipy.oauth2 import SpotifyClientCredentials
 import spotipy
+from django.conf import settings
 
 # Create your views here.
 def home(request):
-    client_id = "cf0635b8ba9c4fb79c950f97b20e353e"
-    client_secret = "e90c4d2d65454b2f8c6f0a801bea8d10"
+    #client_id = "cf0...53e"
+    #client_secret = "e90...d10"
 
-    lz_uri = 'spotify:artist:6VuMaDnrHyPL1p4EHjYLi7' # Charlie Puth
+    lz_uri = 'spotify:artist:6OwKE9Ez6ALxpTaKcT5ayv' # 악동뮤지션
     # spotify:artist:아티스트ID
 
-    client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
+    CLIENT_ID = getattr(settings, 'CLIENT_ID', None)
+    CLIENT_SECRET = getattr(settings, 'CLIENT_SECRET', None)
+    client_credentials_manager = SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
     results = sp.artist_top_tracks(lz_uri)
